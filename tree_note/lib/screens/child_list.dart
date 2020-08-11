@@ -6,7 +6,9 @@ import 'package:tree_note/screens/leaf_tile.dart';
 class ChildList extends StatefulWidget {
 
   final List<TreeNode> children;
-  ChildList({this.children});
+  final Function setData;
+
+  ChildList({this.children, this.setData});
 
   @override
   _ChildListState createState() => _ChildListState();
@@ -18,7 +20,7 @@ class _ChildListState extends State<ChildList> {
     return ListView.builder(
       itemCount: widget.children.length,
       itemBuilder: (context, index){
-        return widget.children[index].branch ? BranchTile(node: widget.children[index]) : LeafTile(node: widget.children[index]);
+        return widget.children[index].branch ? BranchTile(node: widget.children[index], setData: widget.setData) : LeafTile(node: widget.children[index]);
       },
     );
   }

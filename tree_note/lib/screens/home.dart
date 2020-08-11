@@ -16,6 +16,10 @@ class _HomeState extends State<Home> {
   Map data =  {
   };
   
+  void setData(TreeNode node){
+    setState(() => data = {'currentNode': node});
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode),
       body: Container(
-        child: ChildList(children: currentNode.children),
+        child: ChildList(children: currentNode.children, setData: setData),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,

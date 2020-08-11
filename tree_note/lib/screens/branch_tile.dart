@@ -5,8 +5,9 @@ import 'package:tree_note/models/tree_node.dart';
 class BranchTile extends StatelessWidget {
 
   final TreeNode node;
+  final Function setData;
   
-  BranchTile({this.node});
+  BranchTile({this.node, this.setData});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,7 @@ class BranchTile extends StatelessWidget {
       padding: EdgeInsets.only(top: 8.0),
       child: InkWell(
         onTap: (){
-          Navigator.pop(context, {
-                        'currentNode': node
-                      });
+          setData(node);
         },
         child: Card(
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
