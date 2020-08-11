@@ -5,8 +5,6 @@ import 'package:tree_note/shared/constants.dart';
 
 class LeafCreateForm extends StatefulWidget {
 
-  final TreeNode currentNode;
-  LeafCreateForm({this.currentNode});
 
   @override
   _LeafCreateFormState createState() => _LeafCreateFormState();
@@ -16,12 +14,14 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
 
 
   final _formKey = GlobalKey<FormState>();
-
+  Map data = {};
   //form values
   String _note;
 
   @override
   Widget build(BuildContext context) {
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -71,10 +71,10 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                       ),
                       onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          TreeNode newNode = new TreeNode(parent: widget.currentNode, children: [], branch: true, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
-                          widget.currentNode.addChild(newNode);
+                          TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: true, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
+                          currentNode.addChild(newNode);
                           Navigator.pop(context, {
-                            'currentNode': widget.currentNode
+                            'currentNode': currentNode
                           });
                         }
                       },

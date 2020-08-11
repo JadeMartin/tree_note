@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
 
 
-class DeleteConfirm extends StatelessWidget {
+class DeleteConfirm extends StatefulWidget {
 
-  final TreeNode currentNode;
+  @override
+  _DeleteConfirmState createState() => _DeleteConfirmState();
+}
 
-  DeleteConfirm({this.currentNode});
+class _DeleteConfirmState extends State<DeleteConfirm> {
+
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
     return Scaffold(
       body: Center(
         child: Column(

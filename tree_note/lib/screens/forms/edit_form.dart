@@ -7,8 +7,6 @@ import 'package:string_validator/string_validator.dart';
 
 class EditForm extends StatefulWidget {
 
-  final TreeNode currentNode;
-  EditForm({this.currentNode});
 
   @override
   _EditFormState createState() => _EditFormState();
@@ -18,7 +16,7 @@ class _EditFormState extends State<EditForm> {
 
 
   final _formKey = GlobalKey<FormState>();
-
+  Map data = {};
   //form values
   String _name;
   int _progress;
@@ -26,6 +24,8 @@ class _EditFormState extends State<EditForm> {
 
   @override
   Widget build(BuildContext context) {
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -49,21 +49,21 @@ class _EditFormState extends State<EditForm> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                    initialValue: widget.currentNode.name,
+                    initialValue: currentNode.name,
                     decoration: textInputDecoration,
                     validator: (val) => val.isEmpty? 'Please enter a branch name' : null,
                     onChanged: (val) => setState(() => _name = val),
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: widget.currentNode.name,
+                    initialValue: currentNode.name,
                     decoration: textInputDecoration,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
                     onChanged: (val) => setState(() => _progress = int.parse(val)),
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: widget.currentNode.name,
+                    initialValue: currentNode.name,
                     decoration: textInputDecoration,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
                     onChanged: (val) => setState(() => _limit = int.parse(val)),
@@ -90,9 +90,9 @@ class _EditFormState extends State<EditForm> {
                       ),
                       onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          widget.currentNode.update(_name, _progress, _limit);
+                          currentNode.update(_name, _progress, _limit);
                           Navigator.pop(context, {
-                            'currentNode': widget.currentNode
+                            'currentNode': currentNode
                           });
                         }
                       },

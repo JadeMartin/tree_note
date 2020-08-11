@@ -7,8 +7,6 @@ import 'package:string_validator/string_validator.dart';
 
 class BranchCreateForm extends StatefulWidget {
 
-  final TreeNode currentNode;
-  BranchCreateForm({this.currentNode});
 
   @override
   _BranchCreateFormState createState() => _BranchCreateFormState();
@@ -18,7 +16,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
 
 
   final _formKey = GlobalKey<FormState>();
-
+  Map data = {}
   //form values
   String _name;
   int _progress;
@@ -26,6 +24,10 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
+
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -90,10 +92,10 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                     ),
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
-                        TreeNode newNode = new TreeNode(parent: widget.currentNode, children: [], branch: true, name: _name, creationTime: DateTime.now(), progress: _progress, limit: _limit, note:'');
-                        widget.currentNode.addChild(newNode);
+                        TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: true, name: _name, creationTime: DateTime.now(), progress: _progress, limit: _limit, note:'');
+                        currentNode.addChild(newNode);
                         Navigator.pop(context, {
-                          'currentNode': widget.currentNode
+                          'currentNode': currentNode
                         });
                       }
                     },

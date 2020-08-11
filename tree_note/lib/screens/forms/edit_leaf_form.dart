@@ -6,8 +6,6 @@ import 'package:tree_note/shared/constants.dart';
 
 class EditLeafForm extends StatefulWidget {
 
-  final TreeNode currentNode;
-  EditLeafForm({this.currentNode});
 
   @override
   _EditLeafFormState createState() => _EditLeafFormState();
@@ -17,12 +15,16 @@ class _EditLeafFormState extends State<EditLeafForm> {
 
 
   final _formKey = GlobalKey<FormState>();
-
+  Map data = {};
   //form values
   String _note;
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
+
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -46,7 +48,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
         child: Column(
           children: <Widget>[
             TextFormField(
-                  initialValue: widget.currentNode.name,
+                  initialValue: currentNode.name,
                   decoration: textInputDecoration,
                   validator: (val) => val.isEmpty? 'Please enter a note' : null,
                   onChanged: (val) => setState(() => _note = val),
@@ -73,9 +75,9 @@ class _EditLeafFormState extends State<EditLeafForm> {
                     ),
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
-                        widget.currentNode.updateNote(_note);
+                        currentNode.updateNote(_note);
                         Navigator.pop(context, {
-                          'currentNode': widget.currentNode.parent
+                          'currentNode': currentNode.parent
                         });
                       }
                     },
