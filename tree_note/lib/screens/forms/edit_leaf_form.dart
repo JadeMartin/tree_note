@@ -23,55 +23,69 @@ class _EditLeafFormState extends State<EditLeafForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          Text(
-            'Update note details',
-            style: TextStyle(fontSize: 18.0),
-          ),
-          SizedBox(height: 20.0),
-          TextFormField(
-                initialValue: widget.currentNode.name,
-                decoration: textInputDecoration,
-                validator: (val) => val.isEmpty? 'Please enter a note' : null,
-                onChanged: (val) => setState(() => _note = val),
-              ),
-          SizedBox(height: 20.0),
-          ButtonBar(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              RaisedButton(
-                  color: Colors.pink[400],
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(color:Colors.white),
-                  ),
-                  onPressed: () async {
-                      Navigator.pop(context);
-                  },
-              ),
-              RaisedButton(
-                  color: Colors.pink[400],
-                  child: Text(
-                    'Update',
-                    style: TextStyle(color:Colors.white),
-                  ),
-                  onPressed: () async {
-                    if(_formKey.currentState.validate()) {
-                      widget.currentNode.updateNote(_note);
-                      Navigator.pop(context, {
-                        'currentNode': widget.currentNode.parent
-                      });
-                    }
-                  },
-            ),
-            ]
+    return Scaffold(
+      backgroundColor: Colors.brown[100],
+      appBar: AppBar(
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        title: Text('Update note details'),
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.backup),
+            label: Text('Back'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ],
-        )
-      
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        child: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+                  initialValue: widget.currentNode.name,
+                  decoration: textInputDecoration,
+                  validator: (val) => val.isEmpty? 'Please enter a note' : null,
+                  onChanged: (val) => setState(() => _note = val),
+                ),
+            SizedBox(height: 20.0),
+            ButtonBar(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                RaisedButton(
+                    color: Colors.pink[400],
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color:Colors.white),
+                    ),
+                    onPressed: () async {
+                        Navigator.pop(context);
+                    },
+                ),
+                RaisedButton(
+                    color: Colors.pink[400],
+                    child: Text(
+                      'Update',
+                      style: TextStyle(color:Colors.white),
+                    ),
+                    onPressed: () async {
+                      if(_formKey.currentState.validate()) {
+                        widget.currentNode.updateNote(_note);
+                        Navigator.pop(context, {
+                          'currentNode': widget.currentNode.parent
+                        });
+                      }
+                    },
+              ),
+              ]
+            ),
+          ],
+        )       
+      )
+      )
     );
   }
 }

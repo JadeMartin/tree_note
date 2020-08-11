@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
-import 'package:tree_note/screens/forms/delete_form.dart';
-import 'package:tree_note/screens/forms/edit_leaf_form.dart';
+
 
 
 class LeafTile extends StatelessWidget {

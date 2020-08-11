@@ -35,7 +35,7 @@ class DeleteConfirm extends StatelessWidget {
               RaisedButton(
                   color: Colors.pink[400],
                   child: Text(
-                    'Delete',
+                    'Confirm',
                     style: TextStyle(color:Colors.white),
                   ),
                   onPressed: () async {
