@@ -39,13 +39,14 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
         title: Text('Create new note'),
       ),
       body: Container(
+        width: 100.0,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
-                    decoration: textInputDecoration,
+                    decoration: textLeafInputDecoration,
                     validator: (val) => val.isEmpty? 'Please enter a note' : null,
                     onChanged: (val) => setState(() => _note = val),
                   ),

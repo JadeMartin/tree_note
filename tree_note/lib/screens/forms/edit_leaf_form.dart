@@ -42,6 +42,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
         title: Text('Update note details'),
       ),
       body: Container(
+        width: 100.0,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
         key: _formKey,
@@ -49,7 +50,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
           children: <Widget>[
             TextFormField(
                   initialValue: currentNode.note,
-                  decoration: textInputDecoration,
+                  decoration: textLeafInputDecoration,
                   validator: (val) => val.isEmpty? 'Please enter a note' : null,
                   onChanged: (val) => setState(() => _note = val),
                 ),
