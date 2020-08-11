@@ -26,24 +26,6 @@ class _HomeState extends State<Home> {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     TreeNode currentNode = data['currentNode'];
 
-    void _showCreateNote() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: LeafCreateForm(currentNode: currentNode),
-        );
-      });
-    }
-
-    void _showCreateBranch() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: BranchCreateForm(currentNode: currentNode),
-        );
-      });
-    }
-
     return Scaffold(
       appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode),
       body: Container(
@@ -55,12 +37,12 @@ class _HomeState extends State<Home> {
           FloatingActionButton(
             heroTag: null,
             child: Icon(Icons.folder),
-            onPressed: () => _showCreateBranch(),
+            onPressed: () => Navigator.pushNamed(context, '/createBranch', arguments: {'currentNode': currentNode}),
           ),
           FloatingActionButton(
             heroTag: null,
             child: Icon(Icons.note_add),
-            onPressed: () => _showCreateNote(),
+            onPressed: () => Navigator.pushNamed(context, '/createLeaf', arguments: {'currentNode': currentNode}),
         ),
       ],)
     );

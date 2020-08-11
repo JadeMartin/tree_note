@@ -13,25 +13,6 @@ class LeafTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void _showEditPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: EditLeafForm(currentNode: node),
-        );
-      });
-    }
-
-    void _showDeleteConfirmPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: DeleteConfirm(currentNode: node),
-        );
-      });
-    }
-
-
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
@@ -43,12 +24,12 @@ class LeafTile extends StatelessWidget {
               subtitle: Text(node.note),
             ),
             FlatButton.icon(
-              onPressed: () => _showEditPanel(),
+              onPressed: () => Navigator.pushNamed(context, '/editLeaf', arguments: {'currentNode': node}),
               icon: Icon(Icons.edit),
               label: Text('Edit'),
               ),
             FlatButton.icon(
-              onPressed: () => _showDeleteConfirmPanel(),
+              onPressed: () => Navigator.pushNamed(context, '/DeleteConfirm', arguments: {'currentNode': node}),
               icon: Icon(Icons.delete),
               label: Text('Delete'),
               ),

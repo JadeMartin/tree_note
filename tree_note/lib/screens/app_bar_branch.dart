@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
-import 'package:tree_note/screens/forms/delete_form.dart';
-import 'package:tree_note/screens/forms/edit_form.dart';
 
 class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
 
@@ -13,23 +11,8 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
 
-    void _showEditPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: EditForm(currentNode: currentNode),
-        );
-      });
-    }
+    //TODO add back on top bar
 
-    void _showDeleteConfirmPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: DeleteConfirm(currentNode: currentNode),
-        );
-      });
-    }
 
     return AppBar(
         title: Text(currentNode.name),
