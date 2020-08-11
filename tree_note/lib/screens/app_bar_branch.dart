@@ -20,12 +20,12 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
         elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
-            onPressed: () => _showEditPanel(),
+            onPressed: () => Navigator.pushNamed(context, '/editBranch', arguments: {'currentNode': currentNode}),
             icon: Icon(Icons.edit),
             label: Text('Edit'),
            ),
            FlatButton.icon(
-            onPressed: () => _showDeleteConfirmPanel(),
+            onPressed: () => Navigator.pushNamed(context, '/DeleteConfirm', arguments: {'currentNode': currentNode}),
             icon: Icon(Icons.delete),
             label: Text('Delete'),
            ),
