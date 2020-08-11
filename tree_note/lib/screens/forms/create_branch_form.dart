@@ -16,7 +16,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
 
 
   final _formKey = GlobalKey<FormState>();
-  Map data = {}
+  Map data = {};
   //form values
   String _name;
   int _progress;
