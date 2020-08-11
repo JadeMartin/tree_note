@@ -11,13 +11,9 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Widget build(BuildContext context) {
-
-    //TODO add back on top bar
-
-
     return AppBar(
         leading: FlatButton.icon(
-            icon: Icon(Icons.backup),
+            icon: Icon(Icons.arrow_back_ios),
             label: Text('Back'),
             onPressed: () {
               setData(currentNode.parent);

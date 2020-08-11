@@ -33,18 +33,14 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Create new branch'),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.backup),
+        leading: FlatButton.icon(
+            icon: Icon(Icons.arrow_back_ios),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context, {
-                          'currentNode': currentNode
-                        });
+              Navigator.pop(context);
             },
           ),
-        ],
+        title: Text('Create new branch'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -83,9 +79,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                       style: TextStyle(color:Colors.white),
                     ),
                     onPressed: () async {
-                        Navigator.pop(context, {
-                          'currentNode': currentNode
-                        });
+                        Navigator.pop(context);
                     },
                 ),
                 RaisedButton(
