@@ -28,30 +28,31 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
         children: <Widget>[
           Text(
             'Create new branch',
             style: TextStyle(fontSize: 18.0),
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           TextFormField(
                 decoration: textInputDecoration,
                 validator: (val) => val.isEmpty? 'Please enter a branch name' : null,
                 onChanged: (val) => setState(() => _name = val),
               ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           TextFormField(
                 initialValue: "0",
                 decoration: textInputDecoration,
-                validator: (val) => isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
+                validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
                 onChanged: (val) => setState(() => _progress = int.parse(val)),
               ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           TextFormField(
                 initialValue: "0",
                 decoration: textInputDecoration,
-                validator: (val) => isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
+                validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
                 onChanged: (val) => setState(() => _limit = int.parse(val)),
               ),
           SizedBox(height: 20.0),

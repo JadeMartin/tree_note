@@ -1,0 +1,4 @@
+#Tue Aug 11 19:39:21 NZST 2020
+base.0=C\:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
