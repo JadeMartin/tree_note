@@ -21,7 +21,7 @@ class BranchTile extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
           child: ListTile(
             title: Text(node.name),
-            //TODO add progress subtitle
+            subtitle: Text(node.progressOutput()),
           ),
         ),
       )

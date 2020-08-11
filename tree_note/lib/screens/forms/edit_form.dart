@@ -29,12 +29,8 @@ class _EditFormState extends State<EditForm> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
-        elevation: 0.0,
-        title: Text('Update branch info'),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.backup),
+        leading: FlatButton.icon(
+            icon: Icon(Icons.arrow_back_ios),
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
@@ -42,7 +38,9 @@ class _EditFormState extends State<EditForm> {
                         });
             },
           ),
-        ],
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        title: Text('Update branch info'), 
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),

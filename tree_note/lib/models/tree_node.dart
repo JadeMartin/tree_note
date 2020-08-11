@@ -65,4 +65,12 @@ class TreeNode {
     creationTime = DateTime.now();
   }
 
+  String progressOutput() {
+    String output = "";
+    if (progress == 0 && limit == 0) {
+      output = "$progress / $limit";
+    }
+    return output;
+  }
+
 }

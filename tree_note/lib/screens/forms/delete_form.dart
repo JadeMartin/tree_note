@@ -17,7 +17,23 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     TreeNode currentNode = data['currentNode'];
     return Scaffold(
-      body: Center(
+      backgroundColor: Colors.brown[100],
+      appBar: AppBar(
+        leading: FlatButton.icon(
+            icon: Icon(Icons.arrow_back_ios),
+            label: Text('Back'),
+            onPressed: () {
+              Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
+            },
+          ),
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        title: Text('Delete'),
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Column(
           children: <Widget>[
             Text(

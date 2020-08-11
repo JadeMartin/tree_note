@@ -16,18 +16,17 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
 
 
     return AppBar(
-      
-        title: Text(currentNode.name),
-        backgroundColor: Colors.red[300],
-        elevation: 0.0,
-        actions: <Widget>[
-          FlatButton.icon(
+        leading: FlatButton.icon(
             icon: Icon(Icons.backup),
             label: Text('Back'),
             onPressed: () {
               setData(currentNode.parent);
             },
           ),
+        title: Text(currentNode.name),
+        backgroundColor: Colors.red[300],
+        elevation: 0.0,
+        actions: <Widget>[
           FlatButton.icon(
             onPressed: () async {
               dynamic result = await Navigator.pushNamed(context, '/editBranch', arguments: {'currentNode': currentNode});
