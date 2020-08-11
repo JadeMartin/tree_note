@@ -6,8 +6,8 @@ import 'package:tree_note/models/tree_node.dart';
 class LeafTile extends StatelessWidget {
 
   final TreeNode node;
-
-  LeafTile({this.node});
+  final Function setData;
+  LeafTile({this.node, this.setData});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +22,26 @@ class LeafTile extends StatelessWidget {
             ListTile(
               subtitle: Text(node.note),
             ),
-            FlatButton.icon(
-              onPressed: () => Navigator.pushNamed(context, '/editLeaf', arguments: {'currentNode': node}),
-              icon: Icon(Icons.edit),
-              label: Text('Edit'),
-              ),
-            FlatButton.icon(
-              onPressed: () => Navigator.pushNamed(context, '/DeleteConfirm', arguments: {'currentNode': node}),
-              icon: Icon(Icons.delete),
-              label: Text('Delete'),
-              ),
+            ButtonBar(
+              children: <Widget>[
+                FlatButton.icon(
+                  onPressed: () async {
+                    dynamic result = await Navigator.pushNamed(context, '/editLeaf', arguments: {'currentNode': node});
+                    setData(result['currentNode']);
+                  },
+                  icon: Icon(Icons.edit),
+                  label: Text('Edit'),
+                  ),
+                FlatButton.icon(
+                  onPressed: () async {
+                    dynamic result = await Navigator.pushNamed(context, '/confirmDelete', arguments: {'currentNode': node});
+                    setData(result['currentNode']);
+                  },  
+                  icon: Icon(Icons.delete),
+                  label: Text('Delete'),
+                  )
+              ]
+            )
           ]
         )
       ),

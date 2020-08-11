@@ -20,7 +20,7 @@ class _ChildListState extends State<ChildList> {
     return ListView.builder(
       itemCount: widget.children.length,
       itemBuilder: (context, index){
-        return widget.children[index].branch ? BranchTile(node: widget.children[index], setData: widget.setData) : LeafTile(node: widget.children[index]);
+        return widget.children[index].branch ? BranchTile(node: widget.children[index], setData: widget.setData) : LeafTile(node: widget.children[index], setData: widget.setData);
       },
     );
   }

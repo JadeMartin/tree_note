@@ -36,7 +36,9 @@ class _EditLeafFormState extends State<EditLeafForm> {
             icon: Icon(Icons.backup),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
             },
           ),
         ],
@@ -48,7 +50,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
         child: Column(
           children: <Widget>[
             TextFormField(
-                  initialValue: currentNode.name,
+                  initialValue: currentNode.note,
                   decoration: textInputDecoration,
                   validator: (val) => val.isEmpty? 'Please enter a note' : null,
                   onChanged: (val) => setState(() => _note = val),
@@ -64,7 +66,9 @@ class _EditLeafFormState extends State<EditLeafForm> {
                       style: TextStyle(color:Colors.white),
                     ),
                     onPressed: () async {
-                        Navigator.pop(context);
+                        Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
                     },
                 ),
                 RaisedButton(

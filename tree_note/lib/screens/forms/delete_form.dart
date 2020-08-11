@@ -35,7 +35,9 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
                     style: TextStyle(color:Colors.white),
                   ),
                   onPressed: () async {
-                      Navigator.pop(context);
+                      Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
                   },
               ),
               RaisedButton(

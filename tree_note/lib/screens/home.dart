@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
 
 
     return Scaffold(
-      appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode),
+      appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
       body: Container(
         child: ChildList(children: currentNode.children, setData: setData),
       ),
@@ -45,6 +45,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           FloatingActionButton(
             heroTag: null,
+            tooltip: 'Create new branch.',
             child: Icon(Icons.folder),
             onPressed: () async {
               dynamic result = await Navigator.pushNamed(context, '/createBranch', arguments: {'currentNode': currentNode});
@@ -58,6 +59,7 @@ class _HomeState extends State<Home> {
           FloatingActionButton(
             heroTag: null,
             child: Icon(Icons.note_add),
+            tooltip: 'Create new note.',
             onPressed: () async {
               dynamic result = await Navigator.pushNamed(context, '/createLeaf', arguments: {'currentNode': currentNode});
               setState(() {

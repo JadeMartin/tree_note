@@ -39,7 +39,9 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
             icon: Icon(Icons.backup),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
             },
           ),
         ],
@@ -81,7 +83,9 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                       style: TextStyle(color:Colors.white),
                     ),
                     onPressed: () async {
-                        Navigator.pop(context);
+                        Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
                     },
                 ),
                 RaisedButton(

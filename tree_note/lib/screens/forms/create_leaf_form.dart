@@ -33,7 +33,9 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
             icon: Icon(Icons.backup),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
             },
           ),
         ],
@@ -60,7 +62,9 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                         style: TextStyle(color:Colors.white),
                       ),
                       onPressed: () async {
-                          Navigator.pop(context);
+                          Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
                       },
                   ),
                   RaisedButton(
@@ -71,7 +75,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                       ),
                       onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: true, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
+                          TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: false, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
                           currentNode.addChild(newNode);
                           Navigator.pop(context, {
                             'currentNode': currentNode

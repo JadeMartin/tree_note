@@ -37,7 +37,9 @@ class _EditFormState extends State<EditForm> {
             icon: Icon(Icons.backup),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
             },
           ),
         ],
@@ -56,14 +58,14 @@ class _EditFormState extends State<EditForm> {
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: currentNode.name,
+                    initialValue: '0',
                     decoration: textInputDecoration,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
                     onChanged: (val) => setState(() => _progress = int.parse(val)),
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: currentNode.name,
+                    initialValue: '0',
                     decoration: textInputDecoration,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
                     onChanged: (val) => setState(() => _limit = int.parse(val)),
@@ -79,7 +81,9 @@ class _EditFormState extends State<EditForm> {
                         style: TextStyle(color:Colors.white),
                       ),
                       onPressed: () async {
-                          Navigator.pop(context);
+                          Navigator.pop(context, {
+                          'currentNode': currentNode
+                        });
                       },
                   ),
                   RaisedButton(
