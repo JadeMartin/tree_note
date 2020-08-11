@@ -45,14 +45,14 @@ class _EditFormState extends State<EditForm> {
           TextFormField(
                 initialValue: widget.currentNode.name,
                 decoration: textInputDecoration,
-                validator: (val) => isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
+                validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
                 onChanged: (val) => setState(() => _progress = int.parse(val)),
               ),
           SizedBox(height: 20.0),
           TextFormField(
                 initialValue: widget.currentNode.name,
                 decoration: textInputDecoration,
-                validator: (val) => isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
+                validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
                 onChanged: (val) => setState(() => _limit = int.parse(val)),
               ),
           SizedBox(height: 20.0),
@@ -78,7 +78,9 @@ class _EditFormState extends State<EditForm> {
                   onPressed: () async {
                     if(_formKey.currentState.validate()) {
                       widget.currentNode.update(_name, _progress, _limit);
-                      Navigator.pop(context);
+                      Navigator.pop(context, {
+                        'currentNode': widget.currentNode
+                      });
                     }
                   },
             ),

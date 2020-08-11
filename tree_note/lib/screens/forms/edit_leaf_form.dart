@@ -61,7 +61,9 @@ class _EditLeafFormState extends State<EditLeafForm> {
                   onPressed: () async {
                     if(_formKey.currentState.validate()) {
                       widget.currentNode.updateNote(_note);
-                      Navigator.pop(context);
+                      Navigator.pop(context, {
+                        'currentNode': widget.currentNode.parent
+                      });
                     }
                   },
             ),

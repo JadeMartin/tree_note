@@ -8,13 +8,23 @@ import 'package:tree_note/screens/forms/create_leaf_form.dart';
 
 // If already created load the root for now just load a new root 
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
 
-  final TreeNode currentNode;
-  Home({this.currentNode});
+class _HomeState extends State<Home> {
+
+  Map data =  {
+    'currentNode': new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'')
+  };
+  
 
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    TreeNode currentNode = data['currentNode'];
 
     void _showCreateNote() {
       showModalBottomSheet(context: context, builder: (context) {

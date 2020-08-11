@@ -79,7 +79,9 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                     if(_formKey.currentState.validate()) {
                       TreeNode newNode = new TreeNode(parent: widget.currentNode, children: [], branch: true, name: _name, creationTime: DateTime.now(), progress: _progress, limit: _limit, note:'');
                       widget.currentNode.addChild(newNode);
-                      Navigator.pop(context);
+                      Navigator.pop(context, {
+                        'currentNode': widget.currentNode
+                      });
                     }
                   },
             ),

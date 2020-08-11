@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
-import 'package:tree_note/screens/home.dart';
 
 
 class BranchTile extends StatelessWidget {
@@ -15,7 +14,9 @@ class BranchTile extends StatelessWidget {
       padding: EdgeInsets.only(top: 8.0),
       child: InkWell(
         onTap: (){
-          Home(currentNode: node);
+          Navigator.pop(context, {
+                        'currentNode': node
+                      });
         },
         child: Card(
           margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),

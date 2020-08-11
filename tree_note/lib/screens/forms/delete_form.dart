@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
-import 'package:tree_note/screens/home.dart';
 
 
 class DeleteConfirm extends StatelessWidget {
@@ -41,8 +40,9 @@ class DeleteConfirm extends StatelessWidget {
                   ),
                   onPressed: () async {
                     currentNode.parent.removeChild(currentNode);
-                    Home(currentNode: currentNode.parent);
-                    Navigator.pop(context);
+                    Navigator.pop(context, {
+                        'currentNode': currentNode.parent
+                      });
                   },
             ),
             ]

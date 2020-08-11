@@ -60,7 +60,9 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                     if(_formKey.currentState.validate()) {
                       TreeNode newNode = new TreeNode(parent: widget.currentNode, children: [], branch: true, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
                       widget.currentNode.addChild(newNode);
-                      Navigator.pop(context);
+                      Navigator.pop(context, {
+                        'currentNode': widget.currentNode
+                      });
                     }
                   },
             ),
