@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
+import 'package:tree_note/services/database.dart';
 import 'package:tree_note/shared/constants.dart';
 
 
@@ -17,6 +18,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
   Map data = {};
   //form values
   String _note;
+  final maxLines = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         leading: FlatButton.icon(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
@@ -44,11 +46,15 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              TextFormField(
-                    decoration: textLeafInputDecoration,
-                    validator: (val) => val.isEmpty? 'Please enter a note' : null,
-                    onChanged: (val) => setState(() => _note = val),
-                  ),
+              new Container(
+                margin: EdgeInsets.all(12),
+                height: maxLines * 24.0,
+                child: TextField(
+                      maxLines: maxLines,
+                      decoration: textLeafInputDecoration,
+                      onChanged: (val) => setState(() => _note = val),
+                    ),
+              ),
               SizedBox(height: 20.0),
               ButtonBar(
                 mainAxisSize: MainAxisSize.min,
@@ -75,6 +81,8 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                         if(_formKey.currentState.validate()) {
                           TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: false, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
                           currentNode.addChild(newNode);
+                          newNode.setParentId(currentNode.id);
+                          newNode.setId(await insertNode(newNode));
                           Navigator.pop(context, {
                             'currentNode': currentNode
                           });

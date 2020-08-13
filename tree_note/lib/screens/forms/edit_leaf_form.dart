@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
+import 'package:tree_note/services/database.dart';
 import 'package:tree_note/shared/constants.dart';
 
 
@@ -29,7 +30,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         leading: FlatButton.icon(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
@@ -78,6 +79,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
                         currentNode.updateNote(_note);
+                        await updateNode(currentNode);
                         Navigator.pop(context, {
                           'currentNode': currentNode.parent
                         });

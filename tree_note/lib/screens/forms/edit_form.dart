@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tree_note/models/tree_node.dart';
+import 'package:tree_note/services/database.dart';
 import 'package:tree_note/shared/constants.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -31,7 +32,7 @@ class _EditFormState extends State<EditForm> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         leading: FlatButton.icon(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
@@ -105,6 +106,7 @@ class _EditFormState extends State<EditForm> {
                           int progress = int.tryParse(_progress) ?? 0;
                           int limit = int.tryParse(_limit) ?? 0;
                           currentNode.update(_name, progress, limit);
+                          await updateNode(currentNode);
                           Navigator.pop(context, {
                             'currentNode': currentNode
                           });

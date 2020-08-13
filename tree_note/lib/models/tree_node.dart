@@ -1,8 +1,14 @@
 class TreeNode {
 
-  //Tree data - unique id for the branch and parents id.
+
+  //Tree data for DB 
+  int id;
+  int parentId;
+
+  //Tree data - unique id for the branch and parents id. (Cant be stored in DB )
   final TreeNode parent;
   List<TreeNode> children;
+
   // branch = true, leaf = false.
   final bool branch;
 
@@ -76,4 +82,24 @@ class TreeNode {
     return output;
   }
 
+  setId(int newId){
+    id = newId;
+  }
+
+  setParentId(int newParentId){
+    parentId = newParentId;
+  }
+
+  //Map tree node for database storage
+  Map<String, dynamic> toMap() {
+    return {
+      'parentId': parent.id,
+      'branch': branch ? 0 : 1,
+      'name': name,
+      'creationTime': creationTime,
+      'progress': progress,
+      'limit': limit,
+      'note': note,
+    };
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tree_note/models/tree_node.dart';
+import 'package:tree_note/services/database.dart';
 import 'package:tree_note/shared/constants.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -35,7 +36,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         leading: FlatButton.icon(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
@@ -108,6 +109,8 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                           int limit = int.tryParse(_limit) ?? 0;
                         TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: true, name: _name, creationTime: DateTime.now(), progress: progress, limit: limit, note:'');
                         currentNode.addChild(newNode);
+                        newNode.setParentId(currentNode.id);
+                        newNode.setId(await insertNode(newNode));
                         Navigator.pop(context, {
                           'currentNode': currentNode
                         });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
+import 'package:tree_note/services/database.dart';
 
 
 class DeleteConfirm extends StatefulWidget {
@@ -24,7 +25,7 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         leading: FlatButton.icon(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             label: Text('Back'),
             onPressed: () {
               if (name == 'Note'){
@@ -74,6 +75,7 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
                   ),
                   onPressed: () async {
                     currentNode.parent.removeChild(currentNode);
+                    deleteNode(currentNode.id);
                     Navigator.pop(context, {
                         'currentNode': currentNode.parent
                       });

@@ -3,6 +3,8 @@ import 'package:tree_note/models/tree_node.dart';
 import 'package:tree_note/screens/app_bar_branch.dart';
 import 'package:tree_note/screens/app_bar_root.dart';
 import 'package:tree_note/screens/child_list.dart';
+import 'package:tree_note/services/database.dart';
+import 'package:tree_note/services/loading.dart';
 
 // If already created load the root for now just load a new root 
 
@@ -16,60 +18,71 @@ class _HomeState extends State<Home> {
   Map data =  {
   };
   
+  bool loading = true;
+
   void setData(TreeNode node){
     setState(() => data = {'currentNode': node});
   }
 
-
+  Future<TreeNode> buildRoot() async {
+    TreeNode root = new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'');
+    root.setId(0);
+    root = await setChildren(root);
+    loading = false;
+    return root;
+  }
+  
   @override
   Widget build(BuildContext context) {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     if (data == null){
+      Future<TreeNode> root = buildRoot();
       data = {    
-        'currentNode': new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'')
+        'currentNode': root
       };
     }
-    
-    
     TreeNode currentNode = data['currentNode'];
 
-
-    return Scaffold(
-      appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
-      body: Container(
-        child: ChildList(children: currentNode.children, setData: setData),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            heroTag: null,
-            tooltip: 'Create new branch.',
-            child: Icon(Icons.folder),
-            onPressed: () async {
-              dynamic result = await Navigator.pushNamed(context, '/createBranch', arguments: {'currentNode': currentNode});
-              setState(() {
-                data = {
-                  'currentNode': result['currentNode'],
-                };
-              });
-            } 
-          ),
-          FloatingActionButton(
-            heroTag: null,
-            child: Icon(Icons.note_add),
-            tooltip: 'Create new note.',
-            onPressed: () async {
-              dynamic result = await Navigator.pushNamed(context, '/createLeaf', arguments: {'currentNode': currentNode});
-              setState(() {
-                data = {
-                  'currentNode': result['currentNode'],
-                };
-              });
-            }
+    if (loading) {
+      return Loading();
+    } else { 
+      return Scaffold(
+        appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
+        body: Container(
+          child: ChildList(children: currentNode.children, setData: setData),
         ),
-      ],)
-    );
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              heroTag: null,
+              tooltip: 'Create new branch.',
+              child: Icon(Icons.folder),
+              onPressed: () async {
+                dynamic result = await Navigator.pushNamed(context, '/createBranch', arguments: {'currentNode': currentNode});
+                setState(() {
+                  data = {
+                    'currentNode': result['currentNode'],
+                  };
+                });
+              } 
+            ),
+            FloatingActionButton(
+              heroTag: null,
+              child: Icon(Icons.note_add),
+              tooltip: 'Create new note.',
+              onPressed: () async {
+                dynamic result = await Navigator.pushNamed(context, '/createLeaf', arguments: {'currentNode': currentNode});
+                setState(() {
+                  data = {
+                    'currentNode': result['currentNode'],
+                  };
+                });
+              }
+          ),
+        ],)
+      );
+    }
   }
 }
