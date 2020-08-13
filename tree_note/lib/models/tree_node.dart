@@ -73,10 +73,15 @@ class TreeNode {
 
   String progressOutput() {
     String output = "";
-    int percent = ((progress/limit) *100).toInt();
+    int percent;
     if (progress == 0 && limit == 0) {
       output = "No current progress";
     } else {
+      if(progress == 0 || limit == 0) {
+        percent = 0;
+      } else {
+        percent = ((progress/limit) *100).toInt();
+      }
       output = "$progress / $limit $percent%";
     }
     return output;
@@ -96,9 +101,9 @@ class TreeNode {
       'parentId': parent.id,
       'branch': branch ? 0 : 1,
       'name': name,
-      'creationTime': creationTime,
+      'creationTime': creationTime.toIso8601String(),
       'progress': progress,
-      'limit': limit,
+      'maxLimit': limit,
       'note': note,
     };
   }

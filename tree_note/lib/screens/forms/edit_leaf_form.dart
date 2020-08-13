@@ -19,6 +19,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
   Map data = {};
   //form values
   String _note;
+  final maxLines = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +49,16 @@ class _EditLeafFormState extends State<EditLeafForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            TextFormField(
-                  initialValue: currentNode.note,
-                  decoration: textLeafInputDecoration,
-                  validator: (val) => val.isEmpty? 'Please enter a note' : null,
-                  onChanged: (val) => setState(() => _note = val),
-                ),
+             new Container(
+                margin: EdgeInsets.all(12),
+                height: maxLines * 24.0,
+                child: TextField(
+                      maxLines: maxLines,
+                      controller: TextEditingController(text: currentNode.note),
+                      decoration: textLeafInputDecoration,
+                      onChanged: (val) => setState(() => _note = val),
+                    ),
+             ),
             SizedBox(height: 20.0),
             ButtonBar(
               mainAxisSize: MainAxisSize.min,

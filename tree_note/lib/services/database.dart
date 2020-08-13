@@ -19,8 +19,8 @@ Future<Database> database() async {
           name TEXT,
           creationTime TEXT,
           progress INTEGER,
-          limit INTEGER,
-          note TEXT,
+          maxLimit INTEGER,
+          note TEXT
         )""",
       );
     },
@@ -80,9 +80,9 @@ Future<TreeNode> setChildren(TreeNode node) async {
        children: [],
        branch: isBranch(maps[i]['branch']),
        name: maps[i]['name'],
-       creationTime: maps[i]['creationTime'],
+       creationTime: DateTime.parse(maps[i]['creationTime']),
        progress: maps[i]['progress'],
-       limit: maps[i]['limit'],
+       limit: maps[i]['maxLimit'],
        note: maps[i]['note'],
     );
     childNode.setId(maps[i]['id']);

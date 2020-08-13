@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:tree_note/models/tree_node.dart';
 import 'package:tree_note/screens/app_bar_branch.dart';
 import 'package:tree_note/screens/app_bar_root.dart';
@@ -24,12 +25,17 @@ class _HomeState extends State<Home> {
     setState(() => data = {'currentNode': node});
   }
 
-  Future<TreeNode> buildRoot() async {
+  buildRoot() async {
     TreeNode root = new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'');
     root.setId(0);
     root = await setChildren(root);
     loading = false;
-    return root;
+    setState(() {
+      data = {    
+        'currentNode': root
+      };
+      loading = false;
+    });
   }
   
   @override
@@ -37,16 +43,15 @@ class _HomeState extends State<Home> {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     if (data == null){
-      Future<TreeNode> root = buildRoot();
-      data = {    
-        'currentNode': root
-      };
+      buildRoot();
+    } else {
+      loading = false;
     }
-    TreeNode currentNode = data['currentNode'];
 
     if (loading) {
       return Loading();
     } else { 
+      TreeNode currentNode = data['currentNode'];
       return Scaffold(
         appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
         body: Container(
