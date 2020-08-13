@@ -29,6 +29,23 @@ Future<Database> database() async {
   );
 }
 
+//""" Future<void> clearDb() async {
+  //final Database db = await database();
+ /// await db.execute("DROP TABLE IF EXISTS nodes");
+  //await db.execute(CREATE TABLE nodes(
+    //      id INTEGER PRIMARY KEY,
+       //   parentId INTEGER,
+         /// branch INTEGER,
+        //  name TEXT,
+        //  creationTime TEXT,
+//progress INTEGER,
+      //    maxLimit INTEGER,
+      //    note TEXT
+ //       ));
+//}
+
+
+
 Future<int> insertNode(TreeNode node) async {
   //get a reference to the database.
   final Database db = await database();

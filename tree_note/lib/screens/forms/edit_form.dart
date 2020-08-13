@@ -102,7 +102,10 @@ class _EditFormState extends State<EditForm> {
                               _progress = "0";
                             } if(_limit == null) {
                               _limit = "0";
+                            } if(_name == null) {
+                              _name = currentNode.name;
                             }
+            
                           int progress = int.tryParse(_progress) ?? 0;
                           int limit = int.tryParse(_limit) ?? 0;
                           currentNode.update(_name, progress, limit);

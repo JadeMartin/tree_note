@@ -52,10 +52,11 @@ class _EditLeafFormState extends State<EditLeafForm> {
              new Container(
                 margin: EdgeInsets.all(12),
                 height: maxLines * 24.0,
-                child: TextField(
+                child: TextFormField(
                       maxLines: maxLines,
-                      controller: TextEditingController(text: currentNode.note),
+                      initialValue: currentNode.note,
                       decoration: textLeafInputDecoration,
+                      validator: (val) => val.isEmpty? 'Please enter a note' : null,
                       onChanged: (val) => setState(() => _note = val),
                     ),
              ),
@@ -83,8 +84,13 @@ class _EditLeafFormState extends State<EditLeafForm> {
                     ),
                     onPressed: () async {
                       if(_formKey.currentState.validate()) {
-                        currentNode.updateNote(_note);
-                        await updateNode(currentNode);
+                        if (_note != null){
+                          currentNode.updateNote(_note);
+                          await updateNode(currentNode);
+                          currentNode.parent.removeChild(currentNode);
+                          currentNode.parent.addChild(currentNode);
+                        }
+        
                         Navigator.pop(context, {
                           'currentNode': currentNode.parent
                         });

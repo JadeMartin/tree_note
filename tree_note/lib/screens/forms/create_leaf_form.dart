@@ -49,9 +49,10 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
               new Container(
                 margin: EdgeInsets.all(12),
                 height: maxLines * 24.0,
-                child: TextField(
+                child: TextFormField(
                       maxLines: maxLines,
                       decoration: textLeafInputDecoration,
+                      validator: (val) => val.isEmpty? 'Please enter a note' : null,
                       onChanged: (val) => setState(() => _note = val),
                     ),
               ),
