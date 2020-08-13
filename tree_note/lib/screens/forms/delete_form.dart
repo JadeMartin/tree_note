@@ -16,6 +16,10 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
   Widget build(BuildContext context) {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     TreeNode currentNode = data['currentNode'];
+    String name = currentNode.name;
+    if(name == ""){
+      name = 'Note';
+    }
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -23,9 +27,15 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
             icon: Icon(Icons.arrow_back_ios),
             label: Text('Back'),
             onPressed: () {
-              Navigator.pop(context, {
-                          'currentNode': currentNode
+              if (name == 'Note'){
+                Navigator.pop(context, {
+                          'currentNode': currentNode.parent
                         });
+              } else {
+                Navigator.pop(context, {
+                            'currentNode': currentNode
+                          });
+              }
             },
           ),
         backgroundColor: Colors.brown[400],
@@ -37,7 +47,7 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
         child: Column(
           children: <Widget>[
             Text(
-              'Confirm delete of $currentNode.name',
+              'Confirm delete of $name',
                 style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(height: 20.0),

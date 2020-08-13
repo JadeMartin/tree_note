@@ -33,7 +33,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
             label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
-                          'currentNode': currentNode
+                          'currentNode': currentNode.parent
                         });
             },
           ),
@@ -42,7 +42,6 @@ class _EditLeafFormState extends State<EditLeafForm> {
         title: Text('Update note details'),
       ),
       body: Container(
-        width: 100.0,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
         key: _formKey,

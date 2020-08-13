@@ -67,8 +67,11 @@ class TreeNode {
 
   String progressOutput() {
     String output = "";
+    int percent = ((progress/limit) *100).toInt();
     if (progress == 0 && limit == 0) {
-      output = "$progress / $limit";
+      output = "No current progress";
+    } else {
+      output = "$progress / $limit $percent%";
     }
     return output;
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tree_note/models/tree_node.dart';
 import 'package:tree_note/shared/constants.dart';
 import 'package:string_validator/string_validator.dart';
@@ -19,8 +20,8 @@ class _EditFormState extends State<EditForm> {
   Map data = {};
   //form values
   String _name;
-  int _progress;
-  int _limit;
+  String _progress;
+  String _limit;
 
   @override
   Widget build(BuildContext context) {
@@ -56,17 +57,21 @@ class _EditFormState extends State<EditForm> {
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: '0',
+                    initialValue: currentNode.progress.toString(),
                     decoration: textInputDecoration,
+                    inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
-                    onChanged: (val) => setState(() => _progress = int.parse(val)),
+                    onChanged: (val) => setState(() => _progress = val),
                   ),
               SizedBox(height: 20.0),
               TextFormField(
-                    initialValue: '0',
+                    initialValue: currentNode.limit.toString(),
                     decoration: textInputDecoration,
+                    inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                     validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
-                    onChanged: (val) => setState(() => _limit = int.parse(val)),
+                    onChanged: (val) => setState(() => _limit = val),
                   ),
               SizedBox(height: 20.0),
               ButtonBar(
@@ -91,8 +96,15 @@ class _EditFormState extends State<EditForm> {
                         style: TextStyle(color:Colors.white),
                       ),
                       onPressed: () async {
-                        if(_formKey.currentState.validate()) {
-                          currentNode.update(_name, _progress, _limit);
+                          if(_formKey.currentState.validate()) {
+                            if(_progress == null){
+                              _progress = "0";
+                            } if(_limit == null) {
+                              _limit = "0";
+                            }
+                          int progress = int.tryParse(_progress) ?? 0;
+                          int limit = int.tryParse(_limit) ?? 0;
+                          currentNode.update(_name, progress, limit);
                           Navigator.pop(context, {
                             'currentNode': currentNode
                           });

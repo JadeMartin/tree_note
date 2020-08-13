@@ -39,7 +39,6 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
         title: Text('Create new note'),
       ),
       body: Container(
-        width: 100.0,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
