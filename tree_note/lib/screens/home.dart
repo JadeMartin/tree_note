@@ -26,6 +26,8 @@ class _HomeState extends State<Home> {
   }
 
   buildRoot() async {
+    //clearDb();
+    //createDB();
     TreeNode root = new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'');
     root.setId(0);
     root = await setChildren(root);

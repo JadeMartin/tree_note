@@ -12,32 +12,30 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        leading: FlatButton.icon(
+        leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            label: Text('Back'),
             onPressed: () {
               setData(currentNode.parent);
             },
           ),
         title: Text(currentNode.name),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.red[300],
         elevation: 0.0,
         actions: <Widget>[
-          FlatButton.icon(
+          IconButton(
             onPressed: () async {
               dynamic result = await Navigator.pushNamed(context, '/editBranch', arguments: {'currentNode': currentNode});
               setData(result['currentNode']);
             },
             icon: Icon(Icons.edit),
-            label: Text('Edit'),
            ),
-           FlatButton.icon(
+           IconButton(
             onPressed: () async {
               await Navigator.pushNamed(context, '/confirmDelete', arguments: {'currentNode': currentNode});
               setData(currentNode.parent);
             },
             icon: Icon(Icons.delete),
-            label: Text('Delete'),
            ),
         ],
       );

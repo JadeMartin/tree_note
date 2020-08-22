@@ -10,18 +10,30 @@ class ChildList extends StatefulWidget {
 
   ChildList({this.children, this.setData});
 
+
   @override
   _ChildListState createState() => _ChildListState();
 }
 
 class _ChildListState extends State<ChildList> {
-  @override
+  
+void _onReorder(int oldIndex, int newIndex) {
+      setState(() {
+        if(newIndex > oldIndex){
+          newIndex -= 1;
+        }
+        final TreeNode item = widget.children.removeAt(oldIndex);
+        widget.children.insert(newIndex, item);
+      });
+    }
+
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.children.length,
-      itemBuilder: (context, index){
-        return widget.children[index].branch ? BranchTile(node: widget.children[index], setData: widget.setData) : LeafTile(node: widget.children[index], setData: widget.setData);
-      },
+    return ReorderableListView(
+      children: widget.children.map((node) {
+        print(node.id);
+        return node.branch ? BranchTile(node: node, setData: widget.setData, key: ValueKey(node.id)) : LeafTile(node: node, setData: widget.setData, key: ValueKey(node.id));
+      }).toList(),
+      onReorder: _onReorder,
     );
   }
 }

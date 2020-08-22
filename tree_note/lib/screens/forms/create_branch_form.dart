@@ -35,15 +35,15 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        leading: FlatButton.icon(
+        leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
                           'currentNode': currentNode
                         });
             },
           ),
+        automaticallyImplyLeading: false,
         title: Text('Create new branch'),
       ),
       body: Container(
@@ -60,8 +60,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                 ),
             SizedBox(height: 10.0),
             TextFormField(
-                  initialValue: "0",
-                  decoration: textInputDecoration,
+                  decoration: textProgressInputDecoration,
                   inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                   validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
@@ -69,8 +68,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                 ),
             SizedBox(height: 10.0),
             TextFormField(
-                  initialValue: "0",
-                  decoration: textInputDecoration,
+                  decoration: textLimitInputDecoration,
                   inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                   validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
@@ -122,7 +120,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
           ],
           )
         )
-      ),
+      )
     );
   }
 }

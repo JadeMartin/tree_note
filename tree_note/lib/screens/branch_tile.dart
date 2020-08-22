@@ -6,12 +6,14 @@ class BranchTile extends StatelessWidget {
 
   final TreeNode node;
   final Function setData;
+  final Key key;
   
-  BranchTile({this.node, this.setData});
+  BranchTile({this.node, this.setData, this.key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
+      key: key,
       padding: EdgeInsets.only(top: 8.0),
       child: InkWell(
         onTap: (){

@@ -18,7 +18,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
   Map data = {};
   //form values
   String _note;
-  final maxLines = 5;
+  final maxLines = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -27,27 +27,27 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        leading: FlatButton.icon(
+        leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            label: Text('Back'),
             onPressed: () {
               Navigator.pop(context, {
                           'currentNode': currentNode
                         });
             },
           ),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: Text('Create new note'),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
               new Container(
-                margin: EdgeInsets.all(12),
+                margin: EdgeInsets.all(24),
                 height: maxLines * 24.0,
                 child: TextFormField(
                       maxLines: maxLines,

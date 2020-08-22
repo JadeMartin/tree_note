@@ -6,12 +6,11 @@ class TreeNode {
   int parentId;
 
   //Tree data - unique id for the branch and parents id. (Cant be stored in DB )
-  final TreeNode parent;
+  TreeNode parent;
   List<TreeNode> children;
 
   // branch = true, leaf = false.
   final bool branch;
-
   //Branch data to display for the branch.
   String name;
   DateTime creationTime;
@@ -75,14 +74,14 @@ class TreeNode {
     String output = "";
     int percent;
     if (progress == 0 && limit == 0) {
-      output = "No current progress";
+      output = "";
     } else {
       if(progress == 0 || limit == 0) {
-        percent = 0;
+        output = "No current progress";
       } else {
         percent = ((progress/limit) *100).toInt();
+        output = "$progress / $limit $percent%";
       }
-      output = "$progress / $limit $percent%";
     }
     return output;
   }
@@ -107,4 +106,23 @@ class TreeNode {
       'note': note,
     };
   }
+
+  setParent(TreeNode node){
+    parent = node;
+  }
+
+  //function to return all children that are branchs
+  List<TreeNode> getBranches(){
+    List<TreeNode> branches = List<TreeNode>();
+    children.forEach((element) {
+      if(element.branch || element != null){
+        branches.add(element);
+      }
+    });
+    if (branches == null) {
+      branches = [];
+    }
+    return branches;
+  }
+
 }
