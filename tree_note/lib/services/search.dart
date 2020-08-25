@@ -9,42 +9,29 @@ Future<TreeNode> getRoot(TreeNode node) async {
   return node;
 }
 
+Future<bool> initParentDFS(TreeNode newParent, TreeNode currentNode) async {
+  // Code to init parent check to see wether new parent is a child of currentNode
+  bool isChild = false;
+  Set<TreeNode> visited = await dfs(currentNode, new Set());
+  visited.forEach((element) {isChild = (element.id == newParent.id) ? true : false;});
+  print("Visisted nodes = $visited");
+  print(" is child = $isChild");
+  return isChild;
+}
+
 Future<TreeNode> initDFS(int target, TreeNode currentNode) async {
   TreeNode root = await getRoot(currentNode);
-  int rootID = root.id;
-  print("Root id = $rootID");
-  TreeNode parent = await dfs(target, root, []);
-  String parentName = parent.name;
-  print("Name ?? $parentName");
-  return parent;
+  TreeNode targetNode = root;
+  Set<TreeNode> visited = await dfs(root, new Set());
+  visited.forEach((element) {targetNode = (element.id == target) ? element : targetNode;});
+  String tar = targetNode.name;
+  print("targetname = $tar");
+  return targetNode;
 }
 
 //Depth first search algorithm implementation 
-Future<TreeNode> dfs(int targetId, TreeNode node, List<int> visitedIds) async {
-  if(node.id == targetId){
-    return node;
-  }
-  String name = node.name;
-  int current = node.id;
-  print("node name = $name & id = $current - target = $targetId");
-  //add node to visited list 
-  visitedIds.add(node.id);
-  //check if at target node
-  List<TreeNode> branches = node.getBranches();
-  print("BRANCHS --- $branches");
-  if(node.id != targetId){
-    if(branches.isEmpty && node.id != 0){
-      node = await dfs(targetId, node.parent, visitedIds);
-    } else {
-    //get node branches then loop over them
-    branches.forEach((element) async {
-      //check if loop has reached target and then also check if it has already visited node or not
-      if(node.id != targetId && !visitedIds.contains(element.id)) {
-        node = await dfs(targetId, element, visitedIds);
-      }
-    });
-    }
-    print("$name = name >>");
-    return node;
-  }
+Future<Set<TreeNode>> dfs(TreeNode node, Set<TreeNode> visited) async {
+  visited.add(node);
+  node.children.forEach((element) => {dfs(element, visited)});
+  return visited;
 }

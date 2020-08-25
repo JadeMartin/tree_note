@@ -125,7 +125,9 @@ class _EditLeafFormState extends State<EditLeafForm> {
                           if(selectedNode != null){
                             if(selectedNode.id != currentNode.parent.id){
                               TreeNode newParent = await initDFS(selectedNode.id, currentNode);
-                              
+                              if (await initParentDFS(newParent, currentNode)) {
+                                  newParent.setParent(currentNode.parent);
+                                }
                               currentNode.parent.removeChild(currentNode);
                               newParent.addChild(currentNode);
                               currentNode.setParent(newParent);

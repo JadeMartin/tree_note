@@ -28,9 +28,14 @@ class _EditFormState extends State<EditForm> {
   List<TreeNode> allBranchs = List<TreeNode>();  
 
   bool loading = true;
+  // ignore: avoid_init_to_null
+  TreeNode selectedNode = null;
 
-  loadingCheck() async {
+  loadingCheck(TreeNode currentNode) async {
     allBranchs = await getAllBranchs();
+    TreeNode removeNode = currentNode;
+    allBranchs.forEach((element) { removeNode = (element.id == currentNode.id) ? element : removeNode;});
+    allBranchs.remove(removeNode);
     setState(() {
       loading = false;
     });
@@ -40,11 +45,9 @@ class _EditFormState extends State<EditForm> {
   Widget build(BuildContext context) {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     TreeNode currentNode = data['currentNode'];
-    allBranchs.add(currentNode.parent);
-    TreeNode selectedNode = currentNode.parent;
-    loadingCheck();
 
     if(loading){
+      loadingCheck(currentNode);
       return Loading();
     } else {
       return Scaffold(
@@ -143,17 +146,29 @@ class _EditFormState extends State<EditForm> {
                               } if(_name == null) {
                                 _name = currentNode.name;
                               }
+                            
+                            if(selectedNode != null){
+                              if(selectedNode.id != currentNode.parent.id){
+                                TreeNode newParent = await initDFS(selectedNode.id, currentNode);
+                                print("initParentDFS");
+                                if (await initParentDFS(newParent, currentNode)) {
+                                  newParent.parent.removeChild(newParent);
+                                  newParent.setParent(currentNode.parent);
+                                  currentNode.parent.addChild(newParent);
+                                }
+                                currentNode.parent.removeChild(currentNode);
+                                newParent.addChild(currentNode);
+                                currentNode.setParent(newParent);
+                                currentNode.setParentId(newParent.id);
+                              }
+                            } else {
+                              selectedNode = currentNode.parent;
+                            }
+                          
               
                             int progress = int.tryParse(_progress) ?? 0;
                             int limit = int.tryParse(_limit) ?? 0;
                             currentNode.update(_name, progress, limit);
-                            if(selectedNode.id != currentNode.parent.id){
-                              currentNode.parent.removeChild(currentNode);
-                              //TreeNode newParent = dfs(selectedNode.id, getRoot(currentNode), []);
-                             // newParent.addChild(currentNode);
-                             // currentNode.setParentId(selectedNode.id);
-                             // currentNode.setParent(newParent);
-                            }
                             await updateNode(currentNode);
                             Navigator.pop(context, {
                               'currentNode': currentNode
