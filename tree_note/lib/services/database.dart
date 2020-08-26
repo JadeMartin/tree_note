@@ -20,6 +20,7 @@ Future<Database> database() async {
           creationTime TEXT,
           progress INTEGER,
           maxLimit INTEGER,
+          position INTEGER,
           note TEXT
         )""",
       );
@@ -46,6 +47,7 @@ Future<void> createDB() async {
           creationTime TEXT,
           progress INTEGER,
           maxLimit INTEGER,
+          position INTEGER,
           note TEXT
         )""",
       );
@@ -98,6 +100,7 @@ Future<List<TreeNode>> getAllBranchs() async {
     );
     childNode.setId(maps[i]['id']);
     childNode.setParentId(maps[i]['parentId']);
+    childNode.setPosition(maps[i]['position']);
     return childNode;
   });
   TreeNode root = new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'');
@@ -123,6 +126,7 @@ Future<TreeNode> setChildren(TreeNode node) async {
     'nodes',
     where: "parentId = ?",
     whereArgs: [node.id],
+    orderBy: 'position ASC',
     );
 
   List<TreeNode> childList = List.generate(maps.length, (i) {
@@ -138,6 +142,7 @@ Future<TreeNode> setChildren(TreeNode node) async {
     );
     childNode.setId(maps[i]['id']);
     childNode.setParentId(maps[i]['parentId']);
+    childNode.setPosition(maps[i]['position']);
     return childNode;
   });
 

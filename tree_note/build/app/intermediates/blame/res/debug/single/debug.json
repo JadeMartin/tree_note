@@ -32,6 +32,10 @@
         "source": "C:\\Users\\jadem\\.gradle\\caches\\transforms-2\\files-2.1\\a528b13ac93e64cafa3d0480e2c93207\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
+        "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\android\\app\\src\\main\\res\\mipmap-mdpi\\launcher_icon.png"
+    },
+    {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_part_time.xml.flat",
         "source": "C:\\Users\\jadem\\.gradle\\caches\\transforms-2\\files-2.1\\a528b13ac93e64cafa3d0480e2c93207\\core-1.1.0\\res\\layout\\notification_template_part_time.xml"
     },
@@ -50,6 +54,14 @@
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_icon_group.xml.flat",
         "source": "C:\\Users\\jadem\\.gradle\\caches\\transforms-2\\files-2.1\\a528b13ac93e64cafa3d0480e2c93207\\core-1.1.0\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\android\\app\\src\\main\\res\\mipmap-hdpi\\launcher_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\launcher_icon.png"
     },
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
@@ -78,6 +90,10 @@
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\jadem\\.gradle\\caches\\transforms-2\\files-2.1\\a528b13ac93e64cafa3d0480e2c93207\\core-1.1.0\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launcher_icon.png"
     },
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
@@ -134,6 +150,10 @@
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\jadem\\.gradle\\caches\\transforms-2\\files-2.1\\a528b13ac93e64cafa3d0480e2c93207\\core-1.1.0\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_launcher_icon.png.flat",
+        "source": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\android\\app\\src\\main\\res\\mipmap-xhdpi\\launcher_icon.png"
     },
     {
         "merged": "C:\\Users\\jadem\\Desktop\\App projects\\tree_note\\tree_note\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",

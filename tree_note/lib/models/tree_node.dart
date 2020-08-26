@@ -16,6 +16,7 @@ class TreeNode {
   DateTime creationTime;
   int progress;
   int limit; 
+  int position;
 
   //Leaf data
   String note;
@@ -103,6 +104,7 @@ class TreeNode {
       'creationTime': creationTime.toIso8601String(),
       'progress': progress,
       'maxLimit': limit,
+      'position': position == null ? 0 : position,
       'note': note,
     };
   }
@@ -123,6 +125,10 @@ class TreeNode {
       branches = [];
     }
     return branches;
+  }
+
+  setPosition(int pos){
+    position = pos;
   }
 
 }

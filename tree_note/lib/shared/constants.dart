@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 const textInputDecoration = InputDecoration(
-  hintText:'Branch name',
+  labelText:'Branch name',
   fillColor: Colors.white,
   filled: true,
   enabledBorder: OutlineInputBorder(
@@ -14,7 +14,7 @@ const textInputDecoration = InputDecoration(
 );
 
 const textLimitInputDecoration = InputDecoration(
-  hintText:'Maximum progress (0 if unsure)',
+  labelText:'Maximum progress (0 if unsure)',
   fillColor: Colors.white,
   filled: true,
   enabledBorder: OutlineInputBorder(
@@ -25,7 +25,7 @@ const textLimitInputDecoration = InputDecoration(
   ),
 );
 const textProgressInputDecoration = InputDecoration(
-  hintText:'Current progress (0 if unsure)',
+  labelText:'Current progress (0 if unsure)',
   fillColor: Colors.white,
   filled: true,
   enabledBorder: OutlineInputBorder(

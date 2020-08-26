@@ -47,7 +47,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\ja
 	android:label
 		ADDED from C:\Users\jadem\Desktop\App projects\tree_note\tree_note\android\app\src\main\AndroidManifest.xml:10:9-34
 	android:icon
-		ADDED from C:\Users\jadem\Desktop\App projects\tree_note\tree_note\android\app\src\main\AndroidManifest.xml:11:9-43
+		ADDED from C:\Users\jadem\Desktop\App projects\tree_note\tree_note\android\app\src\main\AndroidManifest.xml:11:9-45
 	android:name
 		ADDED from C:\Users\jadem\Desktop\App projects\tree_note\tree_note\android\app\src\main\AndroidManifest.xml:9:9-57
 activity#com.example.tree_note.MainActivity

@@ -18,7 +18,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
   Map data = {};
   //form values
   String _note;
-  final maxLines = 10;
+  final maxLines = 5;
 
   @override
   Widget build(BuildContext context) {

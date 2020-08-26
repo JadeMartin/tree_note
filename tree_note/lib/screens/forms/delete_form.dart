@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tree_note/models/tree_node.dart';
 import 'package:tree_note/services/database.dart';
+import 'package:tree_note/services/search.dart';
 
 
 class DeleteConfirm extends StatefulWidget {
@@ -46,7 +47,7 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
           child: Column(
             children: <Widget>[
               Text(
@@ -84,7 +85,12 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
                     ),
                     onPressed: () async {
                       currentNode.parent.removeChild(currentNode);
-                      deleteNode(currentNode.id);
+                      if(currentNode.branch) {
+                        Set<TreeNode> visited = await dfs(currentNode, new Set());
+                        visited.forEach((element) {deleteNode(element.id);});
+                      } else {
+                        deleteNode(currentNode.id);
+                      }
                       Navigator.pop(context, {
                           'currentNode': currentNode.parent
                         });
@@ -94,6 +100,7 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
             ),
             ],
           ),
+          alignment: Alignment(0,0),
         ),
       )
     );

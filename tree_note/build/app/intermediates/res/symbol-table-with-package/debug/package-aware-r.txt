@@ -1,4 +1,4 @@
-com.example.tree_note
+com.example.Treenotes
 attr alpha
 attr font
 attr fontProviderAuthority
@@ -126,6 +126,7 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 mipmap ic_launcher
+mipmap launcher_icon
 string status_bar_notification_info_overflow
 style LaunchTheme
 style NormalTheme

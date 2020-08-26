@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:tree_note/models/tree_node.dart';
-import 'package:tree_note/screens/app_bar_branch.dart';
-import 'package:tree_note/screens/app_bar_root.dart';
-import 'package:tree_note/screens/child_list.dart';
+import 'package:tree_note/screens/components/app_bar_branch.dart';
+import 'package:tree_note/screens/components/app_bar_root.dart';
+import 'package:tree_note/screens/components/child_list.dart';
 import 'package:tree_note/services/database.dart';
 import 'package:tree_note/services/loading.dart';
 
@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
     } else { 
       TreeNode currentNode = data['currentNode'];
       return Scaffold(
-        appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Tree Notes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
+        appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Treenotes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
         body: Container(
           child: ChildList(children: currentNode.children, setData: setData),
         ),
