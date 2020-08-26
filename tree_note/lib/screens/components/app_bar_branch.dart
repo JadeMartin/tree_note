@@ -9,6 +9,7 @@ class TopBarBranch extends StatelessWidget implements PreferredSizeWidget{
 
   TopBarBranch({this.appBar, this.currentNode, this.setData});
 
+
   @override
   Widget build(BuildContext context) {
     return AppBar(

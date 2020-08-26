@@ -37,7 +37,6 @@ void _onReorder(int oldIndex, int newIndex) {
   Widget build(BuildContext context) {
     return ReorderableListView(
       children: widget.children.map((node) {
-        print(node.id);
         return node.branch ? BranchTile(node: node, setData: widget.setData, key: ValueKey(node.id)) : LeafTile(node: node, setData: widget.setData, key: ValueKey(node.id));
       }).toList(),
       onReorder: _onReorder,

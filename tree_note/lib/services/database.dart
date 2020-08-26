@@ -30,12 +30,13 @@ Future<Database> database() async {
   );
 }
 
+//helper function to clear current DB
 Future<void> clearDb() async {
   final Database db = await database();
   await db.execute("DROP TABLE IF EXISTS nodes");
 }
 
-
+//helper function to help rebuild current DB
 Future<void> createDB() async {
   final Database db = await database();
   db.execute(
@@ -54,6 +55,7 @@ Future<void> createDB() async {
 }
 
 
+// function to insert a node into the DB
 Future<int> insertNode(TreeNode node) async {
   //get a reference to the database.
   final Database db = await database();
@@ -71,6 +73,7 @@ Future<int> insertNode(TreeNode node) async {
   return id;
 }
 
+//helper function to determine if a treenode is a branch
 bool isBranch(int i){
   if(i == 1){
     return false;
@@ -79,6 +82,7 @@ bool isBranch(int i){
   }
 }
 
+//function to get all branchs in the DB
 Future<List<TreeNode>> getAllBranchs() async {
   final Database db = await database();
   //set up db connect then map all the children of the node into TreeNodes
@@ -117,7 +121,8 @@ Future<List<TreeNode>> getAllBranchs() async {
     //check if branch before calling setChild(); leafs can not have childs
     // if x = i.addCHild(setChild(j))
     // i.addChild(setChild(j))
-
+//Function to get the next layer of an a node from the db 
+//recursively iterates over children till it completes all nodes
 Future<TreeNode> setChildren(TreeNode node) async {
 
   final Database db = await database();
@@ -159,6 +164,7 @@ Future<TreeNode> setChildren(TreeNode node) async {
   return node;
 }
 
+//function to update a node in the database
 Future<void> updateNode(TreeNode node) async {
   // get a reference to the database.
   final db = await database();
@@ -173,6 +179,7 @@ Future<void> updateNode(TreeNode node) async {
   );
 }
 
+//function to delete a node in the database
 Future<void> deleteNode(int id) async {
   //get reference to the database.
   final db = await database();

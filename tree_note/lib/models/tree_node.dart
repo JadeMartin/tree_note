@@ -51,14 +51,16 @@ class TreeNode {
     }
   }
 
+  //function to get the title of the node. if at root returns app name
   String getTitle(){
     if(atRoot()){
-      return 'Tree Notes';
+      return 'Treenotes';
     } else {
       return name;
     }
   }
 
+  //function to update a treenode branch
   update(String newName, int newProgress, int newLimit) {
     name = newName;
     progress = newProgress;
@@ -66,11 +68,14 @@ class TreeNode {
     creationTime = DateTime.now();
   }
 
+  //function to update a treenode note
   updateNote(String newNote) {
     note = newNote;
     creationTime = DateTime.now();
   }
 
+  //function that calculators current progress of a branch
+    //if progress is 0 and max progress is 0 then progress is not tracked
   String progressOutput() {
     String output = "";
     int percent;
@@ -86,11 +91,10 @@ class TreeNode {
     }
     return output;
   }
-
+  
   setId(int newId){
     id = newId;
   }
-
   setParentId(int newParentId){
     parentId = newParentId;
   }
