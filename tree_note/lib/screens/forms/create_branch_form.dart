@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:tree_note/models/tree_node.dart';
 import 'package:tree_note/services/database.dart';
 import 'package:tree_note/shared/constants.dart';
-import 'package:string_validator/string_validator.dart';
+//import 'package:string_validator/string_validator.dart';
 
 
 
@@ -50,8 +50,8 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
         key: _formKey,
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
+          //shrinkWrap: true,
           children: <Widget>[
             TextFormField(
                   decoration: textInputDecoration,
@@ -63,7 +63,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                   decoration: textProgressInputDecoration,
                   inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
-                  validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
+                  //validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter valid current progress' : null,
                   onChanged: (val) => setState(() => _progress = val),
                 ),
             SizedBox(height: 10.0),
@@ -71,7 +71,7 @@ class _BranchCreateFormState extends State<BranchCreateForm> {
                   decoration: textLimitInputDecoration,
                   inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
-                  validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
+                  //validator: (val) => !isInt(val) | val.isEmpty ? 'Please enter maximum progress' : null,
                   onChanged: (val) => setState(() => _limit = val),
                 ),
             SizedBox(height: 20.0),

@@ -34,21 +34,19 @@ class LeafTile extends StatelessWidget {
             ),
             ButtonBar(
               children: <Widget>[
-                FlatButton.icon(
+                IconButton(
                   onPressed: () async {
                     dynamic result = await Navigator.pushNamed(context, '/editLeaf', arguments: {'currentNode': node});
                     setData(result['currentNode']);
                   },
-                  icon: Icon(Icons.edit),
-                  label: Text(''),
+                  icon: Icon(Icons.edit, color: Colors.red[300]),
                   ),
-                FlatButton.icon(
+                IconButton(
                   onPressed: () async {
                     dynamic result = await Navigator.pushNamed(context, '/confirmDelete', arguments: {'currentNode': node});
                     setData(result['currentNode']);
                   },  
-                  icon: Icon(Icons.delete),
-                  label: Text(''),
+                  icon: Icon(Icons.delete, color: Colors.red[300]),
                   )
               ]
             )

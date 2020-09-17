@@ -14,7 +14,7 @@ const textInputDecoration = InputDecoration(
 );
 
 const textLimitInputDecoration = InputDecoration(
-  labelText:'Maximum progress (0 if unsure)',
+  labelText:'Maximum progress',
   fillColor: Colors.white,
   filled: true,
   enabledBorder: OutlineInputBorder(
@@ -25,7 +25,7 @@ const textLimitInputDecoration = InputDecoration(
   ),
 );
 const textProgressInputDecoration = InputDecoration(
-  labelText:'Current progress (0 if unsure)',
+  labelText:'Current progress',
   fillColor: Colors.white,
   filled: true,
   enabledBorder: OutlineInputBorder(

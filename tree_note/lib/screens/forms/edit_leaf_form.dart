@@ -21,7 +21,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
   Map data = {};
   //form values
   String _note;
-  final maxLines = 5;
+  final maxLines = 10;
   List<TreeNode> allBranchs = List<TreeNode>();
   bool loading = true;
   // ignore: avoid_init_to_null
@@ -60,7 +60,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
           title: Text('Update note details'),
         ),
         body: Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: Form(
           key: _formKey,
           child: Column(
@@ -83,7 +83,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
                     );
                   }).toList(),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 1.0),
               new Container(
                   margin: EdgeInsets.all(24),
                   height: maxLines * 24.0,
@@ -95,7 +95,7 @@ class _EditLeafFormState extends State<EditLeafForm> {
                         onChanged: (val) => setState(() => _note = val),
                       ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 1.0),
               ButtonBar(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

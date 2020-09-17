@@ -18,7 +18,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
   Map data = {};
   //form values
   String _note;
-  final maxLines = 5;
+  final maxLines = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                       onChanged: (val) => setState(() => _note = val),
                     ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 1.0),
               ButtonBar(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
