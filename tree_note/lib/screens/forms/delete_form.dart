@@ -70,7 +70,6 @@ class _DeleteConfirmState extends State<DeleteConfirm> {
                             'currentNode': currentNode.parent
                           });
                         } else {
-                          print(currentNode.name);
                           Navigator.pop(context, {
                             'currentNode': currentNode
                             });

@@ -31,28 +31,28 @@ Future<Database> database() async {
 }
 
 //helper function to clear current DB
-Future<void> clearDb() async {
-  final Database db = await database();
-  await db.execute("DROP TABLE IF EXISTS nodes");
-}
+// Future<void> clearDb() async {
+//   final Database db = await database();
+//   await db.execute("DROP TABLE IF EXISTS nodes");
+// }
 
 //helper function to help rebuild current DB
-Future<void> createDB() async {
-  final Database db = await database();
-  db.execute(
-        """CREATE TABLE nodes(
-          id INTEGER PRIMARY KEY,
-          parentId INTEGER,
-          branch INTEGER,
-          name TEXT,
-          creationTime TEXT,
-          progress INTEGER,
-          maxLimit INTEGER,
-          position INTEGER,
-          note TEXT
-        )""",
-      );
-}
+// Future<void> createDB() async {
+//   final Database db = await database();
+//   db.execute(
+//         """CREATE TABLE nodes(
+//           id INTEGER PRIMARY KEY,
+//           parentId INTEGER,
+//           branch INTEGER,
+//           name TEXT,
+//           creationTime TEXT,
+//           progress INTEGER,
+//           maxLimit INTEGER,
+//           position INTEGER,
+//           note TEXT
+//         )""",
+//       );
+// }
 
 
 // function to insert a node into the DB

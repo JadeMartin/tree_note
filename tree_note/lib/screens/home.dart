@@ -26,8 +26,6 @@ class _HomeState extends State<Home> {
   }
 
   buildRoot() async {
-    //clearDb();
-    //createDB();
     TreeNode root = new TreeNode(parent: null, children: [], branch: true, name: 'Root', creationTime: DateTime.now(), progress: 0, limit: 0, note:'');
     root.setId(0);
     root = await setChildren(root);
@@ -56,6 +54,7 @@ class _HomeState extends State<Home> {
       TreeNode currentNode = data['currentNode'];
       return Scaffold(
         appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Treenotes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
+        backgroundColor: Colors.brown[100],
         body: Container(
           child: ChildList(children: currentNode.children, setData: setData),
         ),

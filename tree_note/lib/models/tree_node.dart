@@ -117,20 +117,6 @@ class TreeNode {
     parent = node;
   }
 
-  //function to return all children that are branchs
-  List<TreeNode> getBranches(){
-    List<TreeNode> branches = List<TreeNode>();
-    children.forEach((element) {
-      if(element.branch || element != null){
-        branches.add(element);
-      }
-    });
-    if (branches == null) {
-      branches = [];
-    }
-    return branches;
-  }
-
   setPosition(int pos){
     position = pos;
   }

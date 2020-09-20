@@ -150,11 +150,16 @@ class _EditFormState extends State<EditForm> {
                             if(selectedNode != null){
                               if(selectedNode.id != currentNode.parent.id){
                                 TreeNode newParent = await initDFS(selectedNode.id, currentNode);
-                                print("initParentDFS");
+                                print("----------- INFO ---------");
+                                print(newParent.name);
                                 if (await initParentDFS(newParent, currentNode)) {
-                                  newParent.parent.removeChild(newParent);
-                                  newParent.setParent(currentNode.parent);
-                                  currentNode.parent.addChild(newParent);
+                                  TreeNode newChild = await findSubChild(currentNode.id, newParent);
+                                  print(newChild.name);
+                                  print("----------- INFO END ---------");
+                                  currentNode.removeChild(newChild);
+                                  currentNode.parent.addChild(newChild);
+                                  newChild.setParent(currentNode.parent);
+                                  newChild.setParentId(newParent.id);
                                 }
                                 currentNode.parent.removeChild(currentNode);
                                 newParent.addChild(currentNode);

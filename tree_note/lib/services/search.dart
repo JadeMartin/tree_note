@@ -9,12 +9,23 @@ Future<TreeNode> getRoot(TreeNode node) async {
   return node;
 }
 
+
+//Recursive function to find the child of the currentNode that is a parent of newParent 
+Future<TreeNode> findSubChild(id, newParent) async {
+  if (newParent.parent.id != id) {
+    newParent = await findSubChild(id, newParent.parent);
+  }
+  return newParent;
+}
+
 //helper function to initiate DFS to find children nodes of a parent
 Future<bool> initParentDFS(TreeNode newParent, TreeNode currentNode) async {
   // Code to init parent check to see wether new parent is a child of currentNode
   bool isChild = false;
   Set<TreeNode> visited = await dfs(currentNode, new Set());
-  visited.forEach((element) {isChild = (element.id == newParent.id) ? true : false;});
+  print(newParent.name);
+  visited.forEach((element) {print(element.name); isChild = (element.id == newParent.id || isChild) ? true : false;});
+  print(isChild);
   return isChild;
 }
 
