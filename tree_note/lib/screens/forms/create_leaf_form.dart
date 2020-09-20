@@ -80,7 +80,7 @@ class _LeafCreateFormState extends State<LeafCreateForm> {
                       ),
                       onPressed: () async {
                         if(_formKey.currentState.validate()) {
-                          TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: false, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:_note);
+                          TreeNode newNode = new TreeNode(parent: currentNode, children: [], branch: false, name: "", creationTime: DateTime.now(), progress: 0, limit: 0, note:'\n' + _note);
                           currentNode.addChild(newNode);
                           newNode.setParentId(currentNode.id);
                           newNode.setId(await insertNode(newNode));

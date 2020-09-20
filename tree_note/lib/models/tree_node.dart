@@ -70,7 +70,7 @@ class TreeNode {
 
   //function to update a treenode note
   updateNote(String newNote) {
-    note = newNote;
+    note = '\n' + newNote;
     creationTime = DateTime.now();
   }
 
