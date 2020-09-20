@@ -1,13 +1,13 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.Treenotes"
+3    package="jade.martin.Treenotes"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
 8-->C:\Users\jadem\Desktop\portfolio\project\tree_note\gitRepoTreenote\tree_note\tree_note\android\app\src\main\AndroidManifest.xml
-9        android:targetSdkVersion="28" />
+9        android:targetSdkVersion="29" />
 9-->C:\Users\jadem\Desktop\portfolio\project\tree_note\gitRepoTreenote\tree_note\tree_note\android\app\src\main\AndroidManifest.xml
 10    <!--
 11     io.flutter.app.FlutterApplication is an android.app.Application that
