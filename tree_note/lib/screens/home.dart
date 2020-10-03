@@ -37,6 +37,14 @@ class _HomeState extends State<Home> {
       loading = false;
     });
   }
+
+  String isNull(TreeNode node){
+    if(node == null || node.note == null){
+      return "null";
+    } else {
+      return node.note;
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -52,11 +60,28 @@ class _HomeState extends State<Home> {
       return Loading();
     } else { 
       TreeNode currentNode = data['currentNode'];
+
       return Scaffold(
         appBar: currentNode.atRoot() ? TopBarRoot(appBar: AppBar(), title: 'Treenotes') : TopBarBranch(appBar: AppBar(), currentNode: currentNode, setData: setData),
         backgroundColor: Colors.brown[100],
         body: Container(
-          child: ChildList(children: currentNode.children, setData: setData),
+          child: currentNode.branch ? ChildList(children: currentNode.children, setData: setData) 
+          : SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Card(
+                margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      subtitle: Text(isNull(currentNode)),
+                    ),
+                  ]
+                )
+              ),
+            ),
+          ),
         ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,

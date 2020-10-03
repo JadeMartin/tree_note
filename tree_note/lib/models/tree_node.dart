@@ -70,7 +70,7 @@ class TreeNode {
 
   //function to update a treenode note
   updateNote(String newNote) {
-    note = '\n' + newNote;
+    note = newNote;
     creationTime = DateTime.now();
   }
 
@@ -79,15 +79,11 @@ class TreeNode {
   String progressOutput() {
     String output = "";
     int percent;
-    if (progress == 0 && limit == 0) {
-      output = "";
+    if(progress == 0 || limit == 0) {
+      output = "No current progress";
     } else {
-      if(progress == 0 || limit == 0) {
-        output = "No current progress";
-      } else {
-        percent = ((progress/limit) *100).toInt();
-        output = "$progress / $limit $percent%";
-      }
+      percent = ((progress/limit) *100).toInt();
+      output = "$progress / $limit $percent%";
     }
     return output;
   }

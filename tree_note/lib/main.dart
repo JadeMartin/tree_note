@@ -10,6 +10,7 @@ import 'package:tree_note/screens/home.dart';
 void main() {
   runApp(MaterialApp(
     title: "Treenotes",
+    debugShowCheckedModeBanner: false,
     initialRoute: '/home',
     routes: {
       '/home': (context) => Home(),

@@ -14,7 +14,11 @@ class LeafTile extends StatelessWidget {
     if(node == null || node.note == null){
       return "null";
     } else {
-      return node.note;
+      String note = node.note;
+      if(note.length > 250){
+        note = note.substring(0, 250) + " .....";
+      }
+      return note;
     }
   }
 
@@ -31,25 +35,10 @@ class LeafTile extends StatelessWidget {
           children: <Widget>[
             ListTile(
               subtitle: Text(isNull(node)),
+              onTap: (){
+                setData(node);
+              },
             ),
-            ButtonBar(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () async {
-                    dynamic result = await Navigator.pushNamed(context, '/editLeaf', arguments: {'currentNode': node});
-                    setData(result['currentNode']);
-                  },
-                  icon: Icon(Icons.edit, color: Colors.red[300]),
-                  ),
-                IconButton(
-                  onPressed: () async {
-                    dynamic result = await Navigator.pushNamed(context, '/confirmDelete', arguments: {'currentNode': node});
-                    setData(result['currentNode']);
-                  },  
-                  icon: Icon(Icons.delete, color: Colors.red[300]),
-                  )
-              ]
-            )
           ]
         )
       ),
