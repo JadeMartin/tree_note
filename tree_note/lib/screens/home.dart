@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
     if(node == null || node.note == null){
       return "null";
     } else {
-      return node.note;
+      return '\n' + node.note + '\n';
     }
   }
   

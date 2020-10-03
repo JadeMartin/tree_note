@@ -18,7 +18,7 @@ class LeafTile extends StatelessWidget {
       if(note.length > 250){
         note = note.substring(0, 250) + " .....";
       }
-      return note;
+      return '\n' + note + '\n';
     }
   }
 
@@ -28,19 +28,16 @@ class LeafTile extends StatelessWidget {
     return Padding(
       key: key,
       padding: EdgeInsets.only(top: 8.0),
-      child: Card(
-        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              subtitle: Text(isNull(node)),
-              onTap: (){
+      child: InkWell(
+        onTap: (){
                 setData(node);
               },
-            ),
-          ]
-        )
+      child: Card(
+        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
+        child: ListTile(
+          subtitle: Text(isNull(node)),
+          ),
+        ),
       ),
     );
   }
